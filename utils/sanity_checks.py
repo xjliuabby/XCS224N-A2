@@ -1,6 +1,8 @@
-import numpy as np
 import random
-from utils.utils import normalizeRows
+
+import numpy as np
+
+from utils.utils import normalize_rows
 
 
 def dummy():
@@ -9,18 +11,18 @@ def dummy():
 
     dataset = type('dummy', (), {})()
 
-    def dummySampleTokenIdx():
+    def dummy_sample_token_idx():
         return random.randint(0, 4)
 
-    def getRandomContext(C):
+    def get_random_context(C):
         tokens = ["a", "b", "c", "d", "e"]
         return tokens[random.randint(0, 4)], \
                [tokens[random.randint(0, 4)] for i in range(2 * C)]
 
-    dataset.sampleTokenIdx = dummySampleTokenIdx
-    dataset.getRandomContext = getRandomContext
+    dataset.sample_token_idx = dummy_sample_token_idx
+    dataset.get_random_context = get_random_context
 
-    dummy_vectors = normalizeRows(np.random.randn(10, 3))
+    dummy_vectors = normalize_rows(np.random.randn(10, 3))
     dummy_tokens = dict([("a", 0), ("b", 1), ("c", 2), ("d", 3), ("e", 4)])
 
     return dataset, dummy_vectors, dummy_tokens
@@ -28,14 +30,14 @@ def dummy():
 
 inputs = {
     'test_word2vec': {
-        'currentCenterWord': "c",
-        'windowSize': 3,
-        'outsideWords': ["a", "b", "e", "d", "b", "c"]
+        'current_center_word': "c",
+        'window_size': 3,
+        'outside_words': ["a", "b", "e", "d", "b", "c"]
     },
     'test_naivesoftmax': {
-        'centerWordVec': np.array([-0.27323645, 0.12538062, 0.95374082]).astype(float),
-        'outsideWordIdx': 3,
-        'outsideVectors': np.array([[-0.6831809, -0.04200519, 0.72904007],
+        'center_word_vec': np.array([-0.27323645, 0.12538062, 0.95374082]).astype(float),
+        'outside_word_idx': 3,
+        'outside_vectors': np.array([[-0.6831809, -0.04200519, 0.72904007],
                                     [0.18289107, 0.76098587, -0.62245591],
                                     [-0.61517874, 0.5147624, -0.59713884],
                                     [-0.33867074, -0.80966534, -0.47931635],
